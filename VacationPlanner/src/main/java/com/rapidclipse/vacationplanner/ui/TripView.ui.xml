@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.rapidclipse.vacationplanner.ui.MainLayout?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:routeLayout="MainLayout" x:name="TripView" x:route="trips">
+    <x:constraints zpos="0" width="100%" height="100%" />
+</VerticalLayout>
