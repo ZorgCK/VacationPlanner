@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.vaadin.flow.component.button.Button?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="GenColPackageItem" padding="false">
+    <x:constraints width="-1px" zpos="0" height="-1px" />
+    <Button x:themeVariants="LUMO_ERROR" x:name="button">
+        <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#CHECK" />
+        <x:constraints width="0px" height="0px" flex-grow="0.0" />
+        <x:event>click.onComponentEvent</x:event>
+    </Button>
+</VerticalLayout>
