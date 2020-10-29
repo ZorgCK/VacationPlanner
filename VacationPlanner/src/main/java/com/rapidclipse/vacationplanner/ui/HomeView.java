@@ -1,16 +1,18 @@
 
 package com.rapidclipse.vacationplanner.ui;
 
-import java.time.format.DateTimeFormatter;
-
+import com.rapidclipse.framework.server.data.converter.ConverterBuilder;
 import com.rapidclipse.vacationplanner.HasTitle;
 import com.rapidclipse.vacationplanner.entities.Vacation;
 import com.rapidclipse.vacationplanner.microstream.MicroStream;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.formlayout.FormLayout.FormItem;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 
 
@@ -23,16 +25,9 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.initUI();
 		
 		final Vacation v = MicroStream.root().getVacation();
-
 		this.lblTitle.setText(v.getName());
-		
-		final DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-		
-		this.lblFrom.setText(v.getAppointments().get("Beginn").format(df));
-		this.lblTo.setText(v.getAppointments().get("Ende").format(df));
-		this.lblStart.setText(v.getAppointments().get("Abfahrt").format(df));
-		this.lblReturn.setText(v.getAppointments().get("Rückkehr").format(df));
-		this.lblShip.setText(v.getAppointments().get("Fähre").format(df));
+
+		this.binder.readBean(v);
 	}
 
 	@Override
@@ -45,101 +40,103 @@ public class HomeView extends VerticalLayout implements HasTitle
 	// <generated-code name="initUI">
 	private void initUI()
 	{
-		this.lblTitle          = new Label();
-		this.image             = new Image();
-		this.horizontalLayout  = new HorizontalLayout();
-		this.label             = new Label();
-		this.lblFrom           = new Label();
-		this.horizontalLayout2 = new HorizontalLayout();
-		this.label3            = new Label();
-		this.lblTo             = new Label();
-		this.horizontalLayout3 = new HorizontalLayout();
-		this.label5            = new Label();
-		this.lblStart          = new Label();
-		this.horizontalLayout4 = new HorizontalLayout();
-		this.label7            = new Label();
-		this.lblReturn         = new Label();
-		this.horizontalLayout5 = new HorizontalLayout();
-		this.label9            = new Label();
-		this.lblShip           = new Label();
+		this.lblTitle      = new Label();
+		this.image         = new Image();
+		this.form          = new FormLayout();
+		this.formItem      = new FormItem();
+		this.lblArrivel    = new Label();
+		this.dateArrivel   = new DatePicker();
+		this.formItem2     = new FormItem();
+		this.lblDeparture  = new Label();
+		this.dateDeparture = new DatePicker();
+		this.formItem3     = new FormItem();
+		this.lblEnd        = new Label();
+		this.dateEnd       = new DatePicker();
+		this.formItem4     = new FormItem();
+		this.lblStart      = new Label();
+		this.dateStart     = new DatePicker();
+		this.formItem5     = new FormItem();
+		this.lblShip       = new Label();
+		this.dateShip      = new DatePicker();
+		this.binder        = new Binder<>();
 
 		this.lblTitle.setText("Label");
 		this.lblTitle.getStyle().set("font-weight", "bold");
 		this.lblTitle.getStyle().set("font-size", "20px");
 		this.image.setSrc("frontend/images/VomMeerTotal.jpg");
-		this.horizontalLayout.getStyle().set("margin-top", "15px");
-		this.label.setText("Bis:");
-		this.label.getStyle().set("font-weight", "bold");
-		this.lblFrom.setText("Label");
-		this.lblFrom.getStyle().set("text-align", "right");
-		this.label3.setText("Von:");
-		this.label3.getStyle().set("font-weight", "bold");
-		this.lblTo.setText("Label");
-		this.lblTo.getStyle().set("text-align", "right");
-		this.label5.setText("Abfahrt:");
-		this.label5.getStyle().set("font-weight", "bold");
-		this.lblStart.setText("Label");
-		this.lblStart.getStyle().set("text-align", "right");
-		this.label7.setText("Rückfahrt:");
-		this.label7.getStyle().set("font-weight", "bold");
-		this.lblReturn.setText("Label");
-		this.lblReturn.getStyle().set("text-align", "right");
-		this.label9.setText("Fähre:");
-		this.label9.getStyle().set("font-weight", "bold");
-		this.lblShip.setText("Label");
-		this.lblShip.getStyle().set("text-align", "right");
+		this.form
+			.setResponsiveSteps(
+				new FormLayout.ResponsiveStep("0px", 1, FormLayout.ResponsiveStep.LabelsPosition.ASIDE));
+		this.lblArrivel.setText("Rückkehr");
+		this.dateArrivel.setTabIndex(1);
+		this.dateArrivel.setReadOnly(true);
+		this.lblDeparture.setText("Abfahrt");
+		this.dateDeparture.setTabIndex(2);
+		this.dateDeparture.setReadOnly(true);
+		this.lblEnd.setText("Reiseende");
+		this.dateEnd.setTabIndex(3);
+		this.dateEnd.setReadOnly(true);
+		this.lblStart.setText("Reisebeginn");
+		this.dateStart.setTabIndex(4);
+		this.dateStart.setReadOnly(true);
+		this.lblShip.setText("Fähre");
+		this.dateShip.setTabIndex(5);
+		this.dateShip.setReadOnly(true);
 
-		this.label.setSizeUndefined();
-		this.lblFrom.setSizeUndefined();
-		this.horizontalLayout.add(this.label, this.lblFrom);
-		this.horizontalLayout.setFlexGrow(1.0, this.label);
-		this.horizontalLayout.setFlexGrow(1.0, this.lblFrom);
-		this.label3.setSizeUndefined();
-		this.lblTo.setSizeUndefined();
-		this.horizontalLayout2.add(this.label3, this.lblTo);
-		this.horizontalLayout2.setFlexGrow(1.0, this.label3);
-		this.horizontalLayout2.setFlexGrow(1.0, this.lblTo);
-		this.label5.setSizeUndefined();
+		this.binder.forField(this.dateArrivel).withConverter(ConverterBuilder.LocalDateToLocalDateTime().build())
+			.bind(Vacation::getArrivel, (v, x) -> {});
+		this.binder.forField(this.dateDeparture).withConverter(ConverterBuilder.LocalDateToLocalDateTime().build())
+			.bind(Vacation::getDeparture, (v, x) -> {});
+		this.binder.forField(this.dateEnd).withConverter(ConverterBuilder.LocalDateToLocalDateTime().build())
+			.bind(Vacation::getEnd, (v, x) -> {});
+		this.binder.forField(this.dateStart).withConverter(ConverterBuilder.LocalDateToLocalDateTime().build())
+			.bind(Vacation::getStart, (v, x) -> {});
+		this.binder.forField(this.dateShip).withConverter(ConverterBuilder.LocalDateToLocalDateTime().build())
+			.bind(Vacation::getShip, (v, x) -> {});
+
+		this.lblArrivel.setSizeUndefined();
+		this.lblArrivel.getElement().setAttribute("slot", "label");
+		this.dateArrivel.setWidthFull();
+		this.dateArrivel.setHeight(null);
+		this.formItem.add(this.lblArrivel, this.dateArrivel);
+		this.lblDeparture.setSizeUndefined();
+		this.lblDeparture.getElement().setAttribute("slot", "label");
+		this.dateDeparture.setWidthFull();
+		this.dateDeparture.setHeight(null);
+		this.formItem2.add(this.lblDeparture, this.dateDeparture);
+		this.lblEnd.setSizeUndefined();
+		this.lblEnd.getElement().setAttribute("slot", "label");
+		this.dateEnd.setWidthFull();
+		this.dateEnd.setHeight(null);
+		this.formItem3.add(this.lblEnd, this.dateEnd);
 		this.lblStart.setSizeUndefined();
-		this.horizontalLayout3.add(this.label5, this.lblStart);
-		this.horizontalLayout3.setFlexGrow(1.0, this.label5);
-		this.horizontalLayout3.setFlexGrow(1.0, this.lblStart);
-		this.label7.setSizeUndefined();
-		this.lblReturn.setSizeUndefined();
-		this.horizontalLayout4.add(this.label7, this.lblReturn);
-		this.horizontalLayout4.setFlexGrow(1.0, this.label7);
-		this.horizontalLayout4.setFlexGrow(1.0, this.lblReturn);
-		this.label9.setSizeUndefined();
+		this.lblStart.getElement().setAttribute("slot", "label");
+		this.dateStart.setWidthFull();
+		this.dateStart.setHeight(null);
+		this.formItem4.add(this.lblStart, this.dateStart);
 		this.lblShip.setSizeUndefined();
-		this.horizontalLayout5.add(this.label9, this.lblShip);
-		this.horizontalLayout5.setFlexGrow(1.0, this.label9);
-		this.horizontalLayout5.setFlexGrow(1.0, this.lblShip);
+		this.lblShip.getElement().setAttribute("slot", "label");
+		this.dateShip.setWidthFull();
+		this.dateShip.setHeight(null);
+		this.formItem5.add(this.lblShip, this.dateShip);
+		this.form.add(this.formItem, this.formItem2, this.formItem3, this.formItem4, this.formItem5);
 		this.lblTitle.setSizeUndefined();
 		this.image.setWidth("250px");
 		this.image.setHeight(null);
-		this.horizontalLayout.setWidthFull();
-		this.horizontalLayout.setHeight(null);
-		this.horizontalLayout2.setWidthFull();
-		this.horizontalLayout2.setHeight(null);
-		this.horizontalLayout3.setWidthFull();
-		this.horizontalLayout3.setHeight(null);
-		this.horizontalLayout4.setWidthFull();
-		this.horizontalLayout4.setHeight(null);
-		this.horizontalLayout5.setWidthFull();
-		this.horizontalLayout5.setHeight(null);
-		this.add(this.lblTitle, this.image, this.horizontalLayout, this.horizontalLayout2, this.horizontalLayout3,
-			this.horizontalLayout4, this.horizontalLayout5);
+		this.form.setSizeUndefined();
+		this.add(this.lblTitle, this.image, this.form);
 		this.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, this.lblTitle);
 		this.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, this.image);
 		this.setSizeFull();
 	} // </generated-code>
 
 	// <generated-code name="variables">
+	private FormLayout       form;
 	private Image            image;
-	private HorizontalLayout horizontalLayout, horizontalLayout2, horizontalLayout3, horizontalLayout4,
-		horizontalLayout5;
-	private Label            lblTitle, label, lblFrom, label3, lblTo, label5, lblStart, label7, lblReturn, label9,
-		lblShip;
+	private Binder<Vacation> binder;
+	private DatePicker       dateArrivel, dateDeparture, dateEnd, dateStart, dateShip;
+	private Label            lblTitle, lblArrivel, lblDeparture, lblEnd, lblStart, lblShip;
+	private FormItem         formItem, formItem2, formItem3, formItem4, formItem5;
 	// </generated-code>
 
 }

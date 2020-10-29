@@ -2,11 +2,16 @@
 <!DOCTYPE xml>
 <?xdevuiml version="1.0"?>
 <?template NONE?>
+<?import com.rapidclipse.vacationplanner.entities.Vacation?>
 <?import com.rapidclipse.vacationplanner.ui.MainLayout?>
+<?import com.vaadin.flow.component.datepicker.DatePicker?>
+<?import com.vaadin.flow.component.formlayout.FormLayout?>
+<?import com.vaadin.flow.component.formlayout.FormLayout.FormItem?>
 <?import com.vaadin.flow.component.html.Image?>
 <?import com.vaadin.flow.component.html.Label?>
-<?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
 <?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<?import com.vaadin.flow.data.binder.Binder?>
+<?import java.time.LocalDateTime?>
 <VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:routeLayout="MainLayout" x:name="HomeView" x:route="">
     <x:constraints zpos="0" width="100%" height="100%" />
     <Label x:name="lblTitle" text="Label">
@@ -19,82 +24,97 @@
     <Image x:src="frontend/images/VomMeerTotal.jpg" x:name="image">
         <x:constraints width="250px" alignment="CENTER" height="-1px" flex-grow="0.0" />
     </Image>
-    <HorizontalLayout x:name="horizontalLayout">
-        <x:constraints width="100%" height="-1px" flex-grow="0.0" />
-        <x:styles>
-            <entry name="margin-top" value="15px" />
-        </x:styles>
-        <Label x:name="label" text="Bis:">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="font-weight" value="bold" />
-            </x:styles>
-        </Label>
-        <Label x:name="lblFrom" text="Label">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="text-align" value="right" />
-            </x:styles>
-        </Label>
-    </HorizontalLayout>
-    <HorizontalLayout x:name="horizontalLayout2">
-        <x:constraints width="100%" height="0px" flex-grow="0.0" />
-        <Label x:name="label3" text="Von:">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="font-weight" value="bold" />
-            </x:styles>
-        </Label>
-        <Label x:name="lblTo" text="Label">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="text-align" value="right" />
-            </x:styles>
-        </Label>
-    </HorizontalLayout>
-    <HorizontalLayout x:name="horizontalLayout3">
-        <x:constraints width="100%" height="0px" flex-grow="0.0" />
-        <Label x:name="label5" text="Abfahrt:">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="font-weight" value="bold" />
-            </x:styles>
-        </Label>
-        <Label x:name="lblStart" text="Label">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="text-align" value="right" />
-            </x:styles>
-        </Label>
-    </HorizontalLayout>
-    <HorizontalLayout x:name="horizontalLayout4">
-        <x:constraints width="100%" height="0px" flex-grow="0.0" />
-        <Label x:name="label7" text="Rückfahrt:">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="font-weight" value="bold" />
-            </x:styles>
-        </Label>
-        <Label x:name="lblReturn" text="Label">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="text-align" value="right" />
-            </x:styles>
-        </Label>
-    </HorizontalLayout>
-    <HorizontalLayout x:name="horizontalLayout5">
-        <x:constraints width="100%" height="0px" flex-grow="0.0" />
-        <Label x:name="label9" text="Fähre:">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="font-weight" value="bold" />
-            </x:styles>
-        </Label>
-        <Label x:name="lblShip" text="Label">
-            <x:constraints width="0px" height="0px" flex-grow="1.0" />
-            <x:styles>
-                <entry name="text-align" value="right" />
-            </x:styles>
-        </Label>
-    </HorizontalLayout>
+    <FormLayout x:name="form">
+        <x:responsiveSteps>
+            <entry minWidth="0px" columns="1" labelsPosition="ASIDE" />
+        </x:responsiveSteps>
+        <x:constraints width="0px" height="0px" flex-grow="0.0" />
+        <FormItem x:name="formItem">
+            <x:constraints width="0px" height="0px" />
+            <Label x:name="lblArrivel" text="Rückkehr">
+                <x:constraints width="0px" label="true" height="0px" />
+            </Label>
+            <DatePicker tabIndex="1" x:name="dateArrivel" readOnly="true">
+                <x:typeArguments>
+                    <typeArgument type="LocalDateTime" />
+                </x:typeArguments>
+                <x:constraints width="100%" height="0px" />
+            </DatePicker>
+        </FormItem>
+        <FormItem x:name="formItem2">
+            <x:constraints width="0px" height="0px" />
+            <Label x:name="lblDeparture" text="Abfahrt">
+                <x:constraints width="0px" label="true" height="0px" />
+            </Label>
+            <DatePicker tabIndex="2" x:name="dateDeparture" readOnly="true">
+                <x:typeArguments>
+                    <typeArgument type="LocalDateTime" />
+                </x:typeArguments>
+                <x:constraints width="100%" height="0px" />
+            </DatePicker>
+        </FormItem>
+        <FormItem x:name="formItem3">
+            <x:constraints width="0px" height="0px" />
+            <Label x:name="lblEnd" text="Reiseende">
+                <x:constraints width="0px" label="true" height="0px" />
+            </Label>
+            <DatePicker tabIndex="3" x:name="dateEnd" readOnly="true">
+                <x:typeArguments>
+                    <typeArgument type="LocalDateTime" />
+                </x:typeArguments>
+                <x:constraints width="100%" height="0px" />
+            </DatePicker>
+        </FormItem>
+        <FormItem x:name="formItem4">
+            <x:constraints width="0px" height="0px" />
+            <Label x:name="lblStart" text="Reisebeginn">
+                <x:constraints width="0px" label="true" height="0px" />
+            </Label>
+            <DatePicker tabIndex="4" x:name="dateStart" readOnly="true">
+                <x:typeArguments>
+                    <typeArgument type="LocalDateTime" />
+                </x:typeArguments>
+                <x:constraints width="100%" height="0px" />
+            </DatePicker>
+        </FormItem>
+        <FormItem x:name="formItem5">
+            <x:constraints width="0px" height="0px" />
+            <Label x:name="lblShip" text="Fähre">
+                <x:constraints width="0px" label="true" height="0px" />
+            </Label>
+            <DatePicker tabIndex="5" x:name="dateShip" readOnly="true">
+                <x:typeArguments>
+                    <typeArgument type="LocalDateTime" />
+                </x:typeArguments>
+                <x:constraints width="100%" height="0px" />
+            </DatePicker>
+        </FormItem>
+        <Binder x:name="binder">
+            <x:typeArguments>
+                <typeArgument type="Vacation" />
+            </x:typeArguments>
+            <x:bindings>
+                <binding field="dateArrivel" property="arrivel" required="false" readOnly="false">
+                    <validator type="Bean" />
+                    <converter TYPE="LocalDateToLocalDateTime" />
+                </binding>
+                <binding field="dateDeparture" property="departure" required="false" readOnly="false">
+                    <validator type="Bean" />
+                    <converter TYPE="LocalDateToLocalDateTime" />
+                </binding>
+                <binding field="dateEnd" property="end" required="false" readOnly="false">
+                    <validator type="Bean" />
+                    <converter TYPE="LocalDateToLocalDateTime" />
+                </binding>
+                <binding field="dateStart" property="start" required="false" readOnly="false">
+                    <validator type="Bean" />
+                    <converter TYPE="LocalDateToLocalDateTime" />
+                </binding>
+                <binding field="dateShip" property="ship" required="false" readOnly="false">
+                    <validator type="Bean" />
+                    <converter TYPE="LocalDateToLocalDateTime" />
+                </binding>
+            </x:bindings>
+        </Binder>
+    </FormLayout>
 </VerticalLayout>
