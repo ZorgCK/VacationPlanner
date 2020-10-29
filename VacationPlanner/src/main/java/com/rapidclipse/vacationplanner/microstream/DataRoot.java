@@ -12,31 +12,31 @@ import com.rapidclipse.vacationplanner.entities.Vacation;
 public class DataRoot
 {
 	private boolean  isFirstStart = true;
-	private Vacation vacation;
-
+	private Vacation vacation     = new Vacation();
+	
 	public DataRoot()
 	{
 		super();
 	}
-	
+
 	public boolean isFirstStart()
 	{
 		return this.isFirstStart;
 	}
-	
+
 	public void setFirstStart(final boolean isFirstStart)
 	{
 		this.isFirstStart = isFirstStart;
 	}
-	
+
 	public Vacation getVacation()
 	{
 		return this.vacation;
 	}
-	
+
 	public void setVacation(final Vacation vacation)
 	{
 		this.vacation = vacation;
 	}
-	
+
 }
