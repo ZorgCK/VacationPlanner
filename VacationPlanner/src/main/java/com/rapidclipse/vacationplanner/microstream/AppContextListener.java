@@ -12,26 +12,21 @@ import org.slf4j.LoggerFactory;
 @WebListener
 public class AppContextListener implements ServletContextListener
 {
-
-	public static Logger LOG = LoggerFactory.getLogger(AppContextListener.class);
 	
+	public static Logger LOG = LoggerFactory.getLogger(AppContextListener.class);
+
 	@Override
 	public void contextInitialized(final ServletContextEvent sce)
 	{
-		// Start storage
+		Init.prepareStorage();
 		
-		if(MicroStream.root().getVacation() == null)
-		{
-			Init.prepareStorage();
-		}
-
 		AppContextListener.LOG.info("Storage initialized.");
 	}
-	
+
 	@Override
 	public void contextDestroyed(final ServletContextEvent sce)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 }
