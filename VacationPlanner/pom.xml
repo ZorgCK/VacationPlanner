@@ -54,17 +54,17 @@
 		<dependency>
 			<groupId>com.rapidclipse</groupId>
 			<artifactId>rap-server-core</artifactId>
-			<version>10.02.02-RAP-GA</version>
+			<version>10.04.01-RAP-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>one.microstream</groupId>
 			<artifactId>storage.embedded</artifactId>
-			<version>04.00.00-MS-GA</version>
+			<version>04.01.00-MS-GA</version>
 		</dependency>
 		<dependency>
 			<groupId>one.microstream</groupId>
 			<artifactId>storage.embedded.configuration</artifactId>
-			<version>04.00.00-MS-GA</version>
+			<version>04.01.00-MS-GA</version>
 		</dependency>
 	</dependencies>
 	<properties>
